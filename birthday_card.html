@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卡片展示</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .card-container {
+            margin-top: 50px;
+        }
+        .card-image {
+            width: 700px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .card-image:hover {
+            transform: scale(1.05);
+        }
+        
+        /* 模態視窗背景 */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 10; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* 模態視窗內容 */
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content img {
+            width: 1000px;
+        }
+
+        /* 關閉按鈕 */
+        .close-btn {
+            position: absolute;
+            top: 0px;
+            right: 15px;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <h2>Click this card to view the contents👇👇👇</h2>
+        <img src="./envelope.jpg" alt="卡片封面" class="card-image" id="cardImage">
+    </div>
+
+    <!-- 模態視窗 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <img src="./card.jpg" alt="卡片內頁">
+        </div>
+    </div>
+
+    <script>
+        // 獲取元素
+        const cardImage = document.getElementById("cardImage");
+        const modal = document.getElementById("modal");
+        const closeBtn = document.getElementById("closeBtn");
+
+        // 點擊卡片開啟模態視窗
+        cardImage.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // 點擊關閉按鈕關閉視窗
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // 點擊模態視窗外部關閉視窗
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
